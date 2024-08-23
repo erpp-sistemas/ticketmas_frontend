@@ -3,7 +3,7 @@ import { AxiosResponse } from "axios"
 
 export interface ParamsRequest{
      url:string
-     data?:object|null
+     data?:object
 }
 
 

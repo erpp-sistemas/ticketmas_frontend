@@ -3,14 +3,13 @@ import { Fraxx, instanceAxios} from "./instanceAxisos";
 
 const {GenerateRoutes}=Fraxx()
 
-const app=GenerateRoutes({
+export const RoutesTickets=GenerateRoutes({
 
-    Tickets:"tickets"
+    Tickets:"tickets",
+    AsignacionesTickets:"tickets/asignaciones"
 
 },instanceAxios)
 
-
-export  default app
 
 
 

@@ -15,11 +15,13 @@ const index = () => {
       
 
   return (
-    <div className={`h-svh overflow-y-hidden  ${themeStyles[theme]} `}>
+    <div className={`h-[100vh] overflow-hidden   ${themeStyles[theme]} `}>
             <TopBar setSateBar={setOpenBarNotification} stateBar={openBarNotification}/>
-        <div className='w-full flex relative overflow-hidden'>
+        <div className='w-full h-full  flex relative pt-[64px]'>
             <MenuBar/>  
+            <div className=' w-full h-full overflow-y-auto relative '>
             <Outlet/>
+            </div>
             <BarNotification stateBar={openBarNotification} setSateBar={setOpenBarNotification}/>
         </div>
     </div>

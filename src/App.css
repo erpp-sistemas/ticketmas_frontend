@@ -43,3 +43,23 @@
   background-color: #24303f !important;
 }
 
+
+/* //?  Animaciones  */
+
+
+.aparicion{
+
+  opacity: 0;
+  animation: 0.5s 1 forwards linear aparicion;
+  
+}
+
+@keyframes aparicion {
+  100%{
+      opacity: 100;
+  }
+}
+
+/* //?  Animaciones  */
+
+

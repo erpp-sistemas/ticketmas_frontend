@@ -31,7 +31,7 @@ const TopBar:React.FC<ParamsBarNotificatio> = ({setSateBar,stateBar}) => {
 
     return (
 
-        <div className='bg-primary w-full h-16 flex relative'> 
+        <div className='bg-primary w-full h-16 flex  absolute z-40 top-0'> 
             
             <img src={ticketMas.logoLigth} className='p-2 ml-6' alt="" />
 

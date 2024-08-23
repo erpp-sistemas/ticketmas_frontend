@@ -6,6 +6,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { DataLogin } from '../@types/login'
 import { useNavigate } from 'react-router-dom'
 import RoutesAuth from '../api/Login'
+import { dispatch } from '../store'
+import { saveUser } from '../store/Slices/user.slice'
 
 
 const Login:React.FC = () => {
@@ -18,6 +20,7 @@ const Login:React.FC = () => {
         RoutesAuth.login({data}).post()
             .then(res => {
                 console.log(res);
+                dispatch(saveUser(res))
                 navigate("/dashboard")
             })
             .catch(res => {

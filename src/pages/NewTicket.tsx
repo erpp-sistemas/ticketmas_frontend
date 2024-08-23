@@ -83,7 +83,7 @@ const NewTicket: React.FC = () => {
 
 
   return (
-    <form onSubmit={handleSubmit(handelSubmitTicket)} className='flex w-full bg-red-500s mt-2 justify-center max-w-[1600px] mx-auto '>
+    <form onSubmit={handleSubmit(handelSubmitTicket)} className='flex w-full h-[98%] bg-red-500s mt-2 justify-center max-w-[1600px] mx-auto  '>
       <section className='w-[65%] mx-auto bg-green-500s '>
         <div className='w-[90%] mx-auto '>
           <div className="mb-6 w-full mx-auto">

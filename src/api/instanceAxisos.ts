@@ -14,7 +14,7 @@ export const instanceAxios=axios.create({
 
 export class TypeRequest {
     
-     private data?: object|null;
+     private data?: object;
      private url: string;
 
     constructor ({ url, data }: ParamsRequest,private readonly instanceAxios:AxiosInstance){
@@ -57,11 +57,11 @@ export class TypeRequest {
 interface requestData{
     url:string
     id?:string
-    data?:object|null
+    data?:object
 }
 
 
-export class Routes<T extends Record<string, string>,L extends  { [K in keyof T]: (data?: object, id?: string) => TypeRequest } > {
+export class Routes<T extends Record<string, string>,L extends  { [K in keyof T]: (params?:RouteParams) => TypeRequest } > {
     private routes: T;
 
     constructor(
@@ -80,13 +80,13 @@ export class Routes<T extends Record<string, string>,L extends  { [K in keyof T]
     protected RoutesFuncionales():L {
         const routeFunctions = {} as L; 
         for (const key in this.routes) {
-            (routeFunctions as any)[key] = (params:RouteParams={}) => this.BaseRoutes({ url: this.routes[key],data:params.data , id:params.id });
+            (routeFunctions as any)[key] = ( params?: RouteParams) => this.BaseRoutes({ url: this.routes[key],data:params?.data , id:params?.id });
         } 
      
         return routeFunctions;
     }
 
-    static GenerateRoutes<T extends Record<string, string>>(routes: T,instanceAxios:AxiosInstance): { [K in keyof T]: (data?: object, id?: string) => TypeRequest } {
+    static GenerateRoutes<T extends Record<string, string>>(routes: T,instanceAxios:AxiosInstance): { [K in keyof T]: (params?:RouteParams) => TypeRequest } {
         
         const instance = new Routes(routes,instanceAxios);
         return instance.RoutesFuncionales();

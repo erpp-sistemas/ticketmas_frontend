@@ -23,23 +23,31 @@ interface Etiqueta{
     color:string
 }
 
-export interface TicketData{
-  data?:{
+export interface TicketLigth{
+ 
     id:string
     prioridad:Prioridad
     fecha_inicio:string
     fecha_fin?:string
     etiqueta:Etiqueta
     asunto:string
-    descripcion?:string
+    descripcion:string
     comentarios?:object
     archivos?:object
     asignaciones:Asignaciones[]
-  }
+
+}
+
+export interface TicketData{
+  openTicket:(idTicket:string)=>void
+  data:TicketLigth
 }
 
 
-
+export interface TicketsPrevewProps{
+  ticket:TicketLigth
+  closeTicket:(bl:undefined)=>void
+}
 
 
 

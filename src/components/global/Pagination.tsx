@@ -2,16 +2,16 @@ import React, { ReactElement, useEffect, useMemo, useState } from "react";
 
 import { IoIosArrowDropupCircle } from "react-icons/io";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
+import { TicketData, TicketLigth } from "../../@types/tickets";
 
-interface PaginationParams{
-   data:object[]
-   children:ReactElement
-   itemsPermitidosByPage:number
-   iconTop?:boolean
-}
+interface PaginationParams {
+   data: TicketLigth[];
+   children: ReactElement<TicketData>;
+   itemsPermitidosByPage: number;
+ }
 
 
-const Pagination:React.FC<PaginationParams>= ({ data ,children,iconTop,itemsPermitidosByPage }) => {
+const Pagination:React.FC<PaginationParams>= ({ data ,children,itemsPermitidosByPage }) => {
    const [itemsPermitidos, setItemsPermitidos] = useState(itemsPermitidosByPage); //*Items permitidos por pagina
    const [paginas, setPaginas] = useState(1); //*Paginas totales que se tendran
    const [pagina, setPagina] = useState(1); //* La pagina actual que se visualiza
@@ -79,26 +79,29 @@ const Pagination:React.FC<PaginationParams>= ({ data ,children,iconTop,itemsPerm
 
 
    return (
-      <div className=" max-w-7xl mx-auto ">
-         <a href="#top" className={`${itemsPermitidos == 10|| !iconTop && "hidden"} p-3 rounded-full bg-primary w-auto fixed bottom-6 right-0 xl:mr-[10%] `}>
-         <IoIosArrowDropupCircle />
-         </a>
+      <div className=" max-w-7xl mx-auto  w-full  flex flex-wrap  h-full">
+         {/* 
+            <a href="#top" className={`${itemsPermitidos == 10 } p-3 rounded-full bg-primary w-auto fixed bottom-6 right-0 xl:mr-[10%] `}>
+               <IoIosArrowDropupCircle />
+            </a> 
+         */}
 
-         <div className=" max-w-6xl mx-auto flex justify-between">
+       <div className={`${animacion&&'aparicion' } h-fit w-full  justify-center items-center p-3  overflow-y-auto mb-auto :flex flex-wrap`}>
+       <div className=" max-w-6xl mx-auto flex justify-between w-full h-7 ">
             <span> Total : {data.length}</span>
             <span> Pagina: {pagina}</span>
          </div>
-       <div className={animacion?'aparicion':""}>
-   
+        
          {
-            itemsMemo.map((item, index) => 
-               React.cloneElement(children, { data:item,index,key:index+1  })
-            )
-         }
+          itemsMemo.map((item, index) =>
+            React.cloneElement(children, { data: item, key: index + 1 })
+          )
+        }
+        
        </div>
 {
    data.length>10&&
-   <nav className="flex justify-center items-center py-6 mb-6">
+<nav className="w-full flex justify-center items-center pys-6 mt-auto">
    <ul className="flex items-center -space-x-px h-10 text-base flex-wrap">
       <li>
          <button onClick={prevewPage} className="mr-3 rounded-l-lg  flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-100 bg-primary border border-e-0 border-gray-300 rounded-s-lg hover:bg-cyan-400  ">
@@ -125,9 +128,9 @@ const Pagination:React.FC<PaginationParams>= ({ data ,children,iconTop,itemsPerm
          <span className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
             limite
             <select onChange={handeltOnchageLimit} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ml-1 p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-               <option value="10">10</option>
-               <option value="50">50</option>
-               <option value="100">100</option>
+               <option value="9">9</option>
+               <option value="36">36</option>
+               <option value="90">90</option>
                <option value="500">500</option>
             </select>
          </span>
